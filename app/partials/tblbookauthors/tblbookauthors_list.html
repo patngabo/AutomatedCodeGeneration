@@ -1,0 +1,22 @@
+		<fieldset class="col-sm-12 bordure">
+			<legend class="legende">{{ 'TblBookAuthors' | translate }}</legend>
+		
+			<div ng-include src="'partials/message-include.html'"></div>
+			
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>{{ 'tblBookAuthors.bookid' | translate }}</th>
+						<th>{{ 'tblBookAuthors.authorid' | translate }}</th>
+						<th><a class="btn btn-info" href='#/tblBookAuthors/new'>{{ 'create' | translate }}</a></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="tblBookAuthors in tblBookAuthorss">
+						<td>{{tblBookAuthors.bookid}}</td>
+						<td>{{tblBookAuthors.authorid}}</td>
+						<td><a class="btn btn-info" href="#/tblBookAuthors/{{tblBookAuthors.bookid}}/{{tblBookAuthors.authorid}}">{{ 'edit' | translate }}</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</fieldset>

@@ -1,0 +1,22 @@
+		<fieldset class="col-sm-12 bordure">
+			<legend class="legende">{{ 'TblBookGenres' | translate }}</legend>
+		
+			<div ng-include src="'partials/message-include.html'"></div>
+			
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>{{ 'tblBookGenres.genreId' | translate }}</th>
+						<th>{{ 'tblBookGenres.bookid' | translate }}</th>
+						<th><a class="btn btn-info" href='#/tblBookGenres/new'>{{ 'create' | translate }}</a></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="tblBookGenres in tblBookGenress">
+						<td>{{tblBookGenres.genreId}}</td>
+						<td>{{tblBookGenres.bookid}}</td>
+						<td><a class="btn btn-info" href="#/tblBookGenres/{{tblBookGenres.genreId}}/{{tblBookGenres.bookid}}">{{ 'edit' | translate }}</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</fieldset>

@@ -1,0 +1,22 @@
+		<fieldset class="col-sm-12 bordure">
+			<legend class="legende">{{ 'TblGenre' | translate }}</legend>
+		
+			<div ng-include src="'partials/message-include.html'"></div>
+			
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>{{ 'tblGenre.genreId' | translate }}</th>
+						<th>{{ 'tblGenre.genreName' | translate }}</th>
+						<th><a class="btn btn-info" href='#/tblGenre/new'>{{ 'create' | translate }}</a></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="tblGenre in tblGenres">
+						<td>{{tblGenre.genreId}}</td>
+						<td>{{tblGenre.genreName}}</td>
+						<td><a class="btn btn-info" href="#/tblGenre/{{tblGenre.genreId}}">{{ 'edit' | translate }}</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</fieldset>

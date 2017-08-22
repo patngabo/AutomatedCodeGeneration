@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Telosys Database Repository --><root>
+<tableList databaseId="0" databaseName="MYSQL" databaseProductName="MySQL" generation="2017-08-01 21:46:07">
+<table catalog="library" databaseType="TABLE" javaBean="TblAuthor" name="tbl_author" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="authorId" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="authorid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Authorid" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="authorName" dbNotNull="true" dbPosition="2" dbSize="45" dbTypeName="VARCHAR" inputType="text" javaName="authorname" javaType="java.lang.String" jdbcTypeCode="12" label="Authorname" maxLength="45" notEmpty="true" notNull="true" selected="true"/>
+<link cardinality="ManyToMany" cascade="" fetch="DEFAULT" foreignKeyName="" id="LINK_JT_tbl_book_authors_O" inverseSideOf="" javaName="listOfTblBook" javaType="java.util.List" joinTableName="tbl_book_authors" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="tbl_author" targetEntity="TblBook" targetTableName="tbl_book" used="true">
+<joinTable name="tbl_book_authors">
+<joinColumns>
+<joinColumn insertable="false" name="authorId" nullable="true" referencedColumnName="authorId" unique="false" updatable="false"/>
+</joinColumns>
+<inverseJoinColumns>
+<joinColumn insertable="false" name="bookId" nullable="true" referencedColumnName="bookId" unique="false" updatable="false"/>
+</inverseJoinColumns>
+</joinTable>
+</link>
+</table>
+<table catalog="library" databaseType="TABLE" javaBean="TblBook" name="tbl_book" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="bookId" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="bookid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Bookid" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="title" dbNotNull="true" dbPosition="2" dbSize="45" dbTypeName="VARCHAR" inputType="text" javaName="title" javaType="java.lang.String" jdbcTypeCode="12" label="Title" maxLength="45" notEmpty="true" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="pubId" dbNotNull="false" dbPosition="3" dbSize="10" dbTypeName="INT" inputType="number" javaName="pubid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Pubid" notNull="false" selected="true"/>
+<fk name="fk_publisher">
+<fkcol colname="pubId" colref="publisherId" deferrable="7" deleterule="0" sequence="1" tablename="tbl_book" tableref="tbl_publisher" updaterule="0"/>
+</fk>
+<link cardinality="ManyToMany" cascade="" fetch="DEFAULT" foreignKeyName="" id="LINK_JT_tbl_book_authors_I" inverseSideOf="LINK_JT_tbl_book_authors_O" javaName="listOfTblAuthor" javaType="java.util.List" joinTableName="tbl_book_authors" mappedBy="listOfTblBook" optional="UNDEFINED" owningSide="false" sourceTableName="tbl_book" targetEntity="TblAuthor" targetTableName="tbl_author" used="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="fk_bl_book" id="LINK_FK_fk_bl_book_I" inverseSideOf="LINK_FK_fk_bl_book_O" javaName="listOfTblBookLoans" javaType="java.util.List" joinTableName="" mappedBy="tblBook" optional="UNDEFINED" owningSide="false" sourceTableName="tbl_book" targetEntity="TblBookLoans" targetTableName="tbl_book_loans" used="true"/>
+<link cardinality="ManyToMany" cascade="" fetch="DEFAULT" foreignKeyName="" id="LINK_JT_tbl_book_genres_O" inverseSideOf="" javaName="listOfTblGenre" javaType="java.util.List" joinTableName="tbl_book_genres" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="tbl_book" targetEntity="TblGenre" targetTableName="tbl_genre" used="true">
+<joinTable name="tbl_book_genres">
+<joinColumns>
+<joinColumn insertable="false" name="bookId" nullable="true" referencedColumnName="bookId" unique="false" updatable="false"/>
+</joinColumns>
+<inverseJoinColumns>
+<joinColumn insertable="false" name="genre_id" nullable="true" referencedColumnName="genre_id" unique="false" updatable="false"/>
+</inverseJoinColumns>
+</joinTable>
+</link>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="fk_publisher" id="LINK_FK_fk_publisher_O" inverseSideOf="" javaName="tblPublisher" javaType="TblPublisher" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="tbl_book" targetEntity="TblPublisher" targetTableName="tbl_publisher" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="pubId" nullable="true" referencedColumnName="publisherId" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="fk_bc_book" id="LINK_FK_fk_bc_book_I" inverseSideOf="LINK_FK_fk_bc_book_O" javaName="listOfTblBookCopies" javaType="java.util.List" joinTableName="" mappedBy="tblBook" optional="UNDEFINED" owningSide="false" sourceTableName="tbl_book" targetEntity="TblBookCopies" targetTableName="tbl_book_copies" used="true"/>
+</table>
+<table catalog="library" databaseType="TABLE" javaBean="TblBookAuthors" name="tbl_book_authors" schema="">
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="bookId" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="bookid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Bookid" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="authorId" dbNotNull="true" dbPosition="2" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="authorid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Authorid" notNull="true" selected="true"/>
+<fk name="fk_tbl_book_authors_tbl_author1">
+<fkcol colname="authorId" colref="authorId" deferrable="7" deleterule="0" sequence="1" tablename="tbl_book_authors" tableref="tbl_author" updaterule="0"/>
+</fk>
+<fk name="fk_tbl_book_authors_tbl_book1">
+<fkcol colname="bookId" colref="bookId" deferrable="7" deleterule="0" sequence="1" tablename="tbl_book_authors" tableref="tbl_book" updaterule="0"/>
+</fk>
+</table>
+<table catalog="library" databaseType="TABLE" javaBean="TblBookCopies" name="tbl_book_copies" schema="">
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="bookId" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="bookid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Bookid" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="branchId" dbNotNull="true" dbPosition="2" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="branchid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Branchid" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="noOfCopies" dbNotNull="false" dbPosition="3" dbSize="10" dbTypeName="INT" inputType="number" javaName="noofcopies" javaType="java.lang.Integer" jdbcTypeCode="4" label="Noofcopies" notNull="false" selected="true"/>
+<fk name="fk_bc_book">
+<fkcol colname="bookId" colref="bookId" deferrable="7" deleterule="0" sequence="1" tablename="tbl_book_copies" tableref="tbl_book" updaterule="0"/>
+</fk>
+<fk name="fk_bc_branch">
+<fkcol colname="branchId" colref="branchId" deferrable="7" deleterule="0" sequence="1" tablename="tbl_book_copies" tableref="tbl_library_branch" updaterule="0"/>
+</fk>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="fk_bc_book" id="LINK_FK_fk_bc_book_O" inverseSideOf="" javaName="tblBook" javaType="TblBook" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="tbl_book_copies" targetEntity="TblBook" targetTableName="tbl_book" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="bookId" nullable="true" referencedColumnName="bookId" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="fk_bc_branch" id="LINK_FK_fk_bc_branch_O" inverseSideOf="" javaName="tblLibraryBranch" javaType="TblLibraryBranch" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="tbl_book_copies" targetEntity="TblLibraryBranch" targetTableName="tbl_library_branch" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="branchId" nullable="true" referencedColumnName="branchId" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+</table>
+<table catalog="library" databaseType="TABLE" javaBean="TblBookGenres" name="tbl_book_genres" schema="">
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="genre_id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="genreId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Genre id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="bookId" dbNotNull="true" dbPosition="2" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="bookid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Bookid" notNull="true" selected="true"/>
+<fk name="fk_tbl_book_genres_tbl_book1">
+<fkcol colname="bookId" colref="bookId" deferrable="7" deleterule="0" sequence="1" tablename="tbl_book_genres" tableref="tbl_book" updaterule="0"/>
+</fk>
+<fk name="fk_tbl_book_genres_tbl_genre1">
+<fkcol colname="genre_id" colref="genre_id" deferrable="7" deleterule="3" sequence="1" tablename="tbl_book_genres" tableref="tbl_genre" updaterule="3"/>
+</fk>
+</table>
+<table catalog="library" databaseType="TABLE" javaBean="TblBookLoans" name="tbl_book_loans" schema="">
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="bookId" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="bookid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Bookid" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="branchId" dbNotNull="true" dbPosition="2" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="branchid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Branchid" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="cardNo" dbNotNull="true" dbPosition="3" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="cardno" javaType="java.lang.Integer" jdbcTypeCode="4" label="Cardno" notNull="true" selected="true"/>
+<column dateType="DT" dbComment="" dbDefaultValue="" dbName="dateOut" dbNotNull="true" dbPosition="4" dbPrimaryKey="true" dbSize="19" dbTypeName="DATETIME" inputType="" javaName="dateout" javaType="java.util.Date" jdbcTypeCode="93" label="Dateout" notNull="true" selected="true"/>
+<column dateType="DT" dbComment="" dbDefaultValue="" dbName="dueDate" dbNotNull="false" dbPosition="5" dbSize="19" dbTypeName="DATETIME" inputType="" javaName="duedate" javaType="java.util.Date" jdbcTypeCode="93" label="Duedate" notNull="false" selected="true"/>
+<column dateType="DT" dbComment="" dbDefaultValue="" dbName="dateIn" dbNotNull="false" dbPosition="6" dbSize="19" dbTypeName="DATETIME" inputType="" javaName="datein" javaType="java.util.Date" jdbcTypeCode="93" label="Datein" notNull="false" selected="true"/>
+<fk name="fk_bl_book">
+<fkcol colname="bookId" colref="bookId" deferrable="7" deleterule="0" sequence="1" tablename="tbl_book_loans" tableref="tbl_book" updaterule="0"/>
+</fk>
+<fk name="fk_bl_borrower">
+<fkcol colname="cardNo" colref="cardNo" deferrable="7" deleterule="0" sequence="1" tablename="tbl_book_loans" tableref="tbl_borrower" updaterule="0"/>
+</fk>
+<fk name="fk_bl_branch">
+<fkcol colname="branchId" colref="branchId" deferrable="7" deleterule="0" sequence="1" tablename="tbl_book_loans" tableref="tbl_library_branch" updaterule="0"/>
+</fk>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="fk_bl_book" id="LINK_FK_fk_bl_book_O" inverseSideOf="" javaName="tblBook" javaType="TblBook" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="tbl_book_loans" targetEntity="TblBook" targetTableName="tbl_book" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="bookId" nullable="true" referencedColumnName="bookId" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="fk_bl_branch" id="LINK_FK_fk_bl_branch_O" inverseSideOf="" javaName="tblLibraryBranch" javaType="TblLibraryBranch" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="tbl_book_loans" targetEntity="TblLibraryBranch" targetTableName="tbl_library_branch" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="branchId" nullable="true" referencedColumnName="branchId" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="fk_bl_borrower" id="LINK_FK_fk_bl_borrower_O" inverseSideOf="" javaName="tblBorrower" javaType="TblBorrower" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="tbl_book_loans" targetEntity="TblBorrower" targetTableName="tbl_borrower" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="cardNo" nullable="true" referencedColumnName="cardNo" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+</table>
+<table catalog="library" databaseType="TABLE" javaBean="TblBorrower" name="tbl_borrower" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="cardNo" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="cardno" javaType="java.lang.Integer" jdbcTypeCode="4" label="Cardno" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="name" dbNotNull="false" dbPosition="2" dbSize="45" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="45" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="address" dbNotNull="false" dbPosition="3" dbSize="45" dbTypeName="VARCHAR" inputType="text" javaName="address" javaType="java.lang.String" jdbcTypeCode="12" label="Address" maxLength="45" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="phone" dbNotNull="false" dbPosition="4" dbSize="45" dbTypeName="VARCHAR" inputType="text" javaName="phone" javaType="java.lang.String" jdbcTypeCode="12" label="Phone" maxLength="45" notNull="false" selected="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="fk_bl_borrower" id="LINK_FK_fk_bl_borrower_I" inverseSideOf="LINK_FK_fk_bl_borrower_O" javaName="listOfTblBookLoans" javaType="java.util.List" joinTableName="" mappedBy="tblBorrower" optional="UNDEFINED" owningSide="false" sourceTableName="tbl_borrower" targetEntity="TblBookLoans" targetTableName="tbl_book_loans" used="true"/>
+</table>
+<table catalog="library" databaseType="TABLE" javaBean="TblGenre" name="tbl_genre" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="genre_id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="genreId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Genre id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="genre_name" dbNotNull="false" dbPosition="2" dbSize="45" dbTypeName="VARCHAR" inputType="text" javaName="genreName" javaType="java.lang.String" jdbcTypeCode="12" label="Genre name" maxLength="45" notNull="false" selected="true"/>
+<link cardinality="ManyToMany" cascade="" fetch="DEFAULT" foreignKeyName="" id="LINK_JT_tbl_book_genres_I" inverseSideOf="LINK_JT_tbl_book_genres_O" javaName="listOfTblBook" javaType="java.util.List" joinTableName="tbl_book_genres" mappedBy="listOfTblGenre" optional="UNDEFINED" owningSide="false" sourceTableName="tbl_genre" targetEntity="TblBook" targetTableName="tbl_book" used="true"/>
+</table>
+<table catalog="library" databaseType="TABLE" javaBean="TblLibraryBranch" name="tbl_library_branch" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="branchId" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="branchid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Branchid" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="branchName" dbNotNull="false" dbPosition="2" dbSize="45" dbTypeName="VARCHAR" inputType="text" javaName="branchname" javaType="java.lang.String" jdbcTypeCode="12" label="Branchname" maxLength="45" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="branchAddress" dbNotNull="false" dbPosition="3" dbSize="45" dbTypeName="VARCHAR" inputType="text" javaName="branchaddress" javaType="java.lang.String" jdbcTypeCode="12" label="Branchaddress" maxLength="45" notNull="false" selected="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="fk_bl_branch" id="LINK_FK_fk_bl_branch_I" inverseSideOf="LINK_FK_fk_bl_branch_O" javaName="listOfTblBookLoans" javaType="java.util.List" joinTableName="" mappedBy="tblLibraryBranch" optional="UNDEFINED" owningSide="false" sourceTableName="tbl_library_branch" targetEntity="TblBookLoans" targetTableName="tbl_book_loans" used="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="fk_bc_branch" id="LINK_FK_fk_bc_branch_I" inverseSideOf="LINK_FK_fk_bc_branch_O" javaName="listOfTblBookCopies" javaType="java.util.List" joinTableName="" mappedBy="tblLibraryBranch" optional="UNDEFINED" owningSide="false" sourceTableName="tbl_library_branch" targetEntity="TblBookCopies" targetTableName="tbl_book_copies" used="true"/>
+</table>
+<table catalog="library" databaseType="TABLE" javaBean="TblPublisher" name="tbl_publisher" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="publisherId" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="publisherid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Publisherid" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="publisherName" dbNotNull="true" dbPosition="2" dbSize="45" dbTypeName="VARCHAR" inputType="text" javaName="publishername" javaType="java.lang.String" jdbcTypeCode="12" label="Publishername" maxLength="45" notEmpty="true" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="publisherAddress" dbNotNull="false" dbPosition="3" dbSize="45" dbTypeName="VARCHAR" inputType="text" javaName="publisheraddress" javaType="java.lang.String" jdbcTypeCode="12" label="Publisheraddress" maxLength="45" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="publisherPhone" dbNotNull="false" dbPosition="4" dbSize="45" dbTypeName="VARCHAR" inputType="text" javaName="publisherphone" javaType="java.lang.String" jdbcTypeCode="12" label="Publisherphone" maxLength="45" notNull="false" selected="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="fk_publisher" id="LINK_FK_fk_publisher_I" inverseSideOf="LINK_FK_fk_publisher_O" javaName="listOfTblBook" javaType="java.util.List" joinTableName="" mappedBy="tblPublisher" optional="UNDEFINED" owningSide="false" sourceTableName="tbl_publisher" targetEntity="TblBook" targetTableName="tbl_book" used="true"/>
+</table>
+</tableList>
+</root>
